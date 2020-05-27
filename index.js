@@ -1,10 +1,11 @@
-function main() {
-  fetchUserInfo("mh-mobile")
-    .then((userInfo) => createView(userInfo))
-    .then((view) => displayView(view))
-    .catch((error) => {
-      console.error(`エラーが発生しました (${error})`);
-    });
+async function main() {
+  try {
+    const userInfo = await fetchUserInfo("mh-mobile");
+    const view = createView(userInfo);
+    displayView(view);
+  } catch (error) {
+    console.error(`エラーが発生しました (${error})`);
+  }
 }
 
 function createView(userInfo) {
