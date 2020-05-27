@@ -1,11 +1,17 @@
 async function main() {
   try {
-    const userInfo = await fetchUserInfo("mh-mobile");
+    const userId = getUserId();
+    const userInfo = await fetchUserInfo(userId);
     const view = createView(userInfo);
     displayView(view);
   } catch (error) {
     console.error(`エラーが発生しました (${error})`);
   }
+}
+
+function getUserId() {
+  const userId = document.getElementById("userId").value;
+  return encodeURIComponent(userId);
 }
 
 function createView(userInfo) {
